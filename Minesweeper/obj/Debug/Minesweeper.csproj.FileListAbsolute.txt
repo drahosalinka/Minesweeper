@@ -8,3 +8,14 @@ C:\Users\Draka\source\repos\Minesweeper\Minesweeper\obj\Debug\Minesweeper.csproj
 C:\Users\Draka\source\repos\Minesweeper\Minesweeper\obj\Debug\Minesweeper.csproj.CoreCompileInputs.cache
 C:\Users\Draka\source\repos\Minesweeper\Minesweeper\obj\Debug\Minesweeper.exe
 C:\Users\Draka\source\repos\Minesweeper\Minesweeper\obj\Debug\Minesweeper.pdb
+C:\Users\Draka\Documents\GitHub\Minesweeper\Minesweeper\bin\Debug\Minesweeper.exe.config
+C:\Users\Draka\Documents\GitHub\Minesweeper\Minesweeper\bin\Debug\Minesweeper.exe
+C:\Users\Draka\Documents\GitHub\Minesweeper\Minesweeper\bin\Debug\Minesweeper.pdb
+C:\Users\Draka\Documents\GitHub\Minesweeper\Minesweeper\obj\Debug\Minesweeper.csproj.AssemblyReference.cache
+C:\Users\Draka\Documents\GitHub\Minesweeper\Minesweeper\obj\Debug\Minesweeper.Form1.resources
+C:\Users\Draka\Documents\GitHub\Minesweeper\Minesweeper\obj\Debug\Minesweeper.Properties.Resources.resources
+C:\Users\Draka\Documents\GitHub\Minesweeper\Minesweeper\obj\Debug\Minesweeper.csproj.GenerateResource.cache
+C:\Users\Draka\Documents\GitHub\Minesweeper\Minesweeper\obj\Debug\Minesweeper.csproj.CoreCompileInputs.cache
+C:\Users\Draka\Documents\GitHub\Minesweeper\Minesweeper\obj\Debug\Minesweeper.exe
+C:\Users\Draka\Documents\GitHub\Minesweeper\Minesweeper\obj\Debug\Minesweeper.pdb
+C:\Users\Draka\Documents\GitHub\Minesweeper\Minesweeper\obj\Debug\Minesweeper.NewGameDialog.resources

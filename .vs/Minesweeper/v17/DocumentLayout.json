@@ -1,14 +1,22 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Draka\\source\\repos\\Minesweeper\\",
+  "WorkspaceRootPath": "C:\\Users\\Draka\\Documents\\GitHub\\Minesweeper\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{684F6374-FBE6-4B1A-9DFD-9D3B7095FECA}|Minesweeper\\Minesweeper.csproj|c:\\users\\draka\\source\\repos\\minesweeper\\minesweeper\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{684F6374-FBE6-4B1A-9DFD-9D3B7095FECA}|Minesweeper\\Minesweeper.csproj|c:\\users\\draka\\documents\\github\\minesweeper\\minesweeper\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{684F6374-FBE6-4B1A-9DFD-9D3B7095FECA}|Minesweeper\\Minesweeper.csproj|solutionrelative:minesweeper\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{684F6374-FBE6-4B1A-9DFD-9D3B7095FECA}|Minesweeper\\Minesweeper.csproj|c:\\users\\draka\\source\\repos\\minesweeper\\minesweeper\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{684F6374-FBE6-4B1A-9DFD-9D3B7095FECA}|Minesweeper\\Minesweeper.csproj|C:\\Users\\Draka\\Documents\\GitHub\\Minesweeper\\minesweeper\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{684F6374-FBE6-4B1A-9DFD-9D3B7095FECA}|Minesweeper\\Minesweeper.csproj|solutionrelative:minesweeper\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{684F6374-FBE6-4B1A-9DFD-9D3B7095FECA}|Minesweeper\\Minesweeper.csproj|c:\\users\\draka\\documents\\github\\minesweeper\\minesweeper\\newgamedialog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{684F6374-FBE6-4B1A-9DFD-9D3B7095FECA}|Minesweeper\\Minesweeper.csproj|solutionrelative:minesweeper\\newgamedialog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{684F6374-FBE6-4B1A-9DFD-9D3B7095FECA}|Minesweeper\\Minesweeper.csproj|c:\\users\\draka\\documents\\github\\minesweeper\\minesweeper\\newgamedialog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{684F6374-FBE6-4B1A-9DFD-9D3B7095FECA}|Minesweeper\\Minesweeper.csproj|solutionrelative:minesweeper\\newgamedialog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,17 +26,42 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "NewGameDialog.cs",
+              "DocumentMoniker": "C:\\Users\\Draka\\Documents\\GitHub\\Minesweeper\\Minesweeper\\NewGameDialog.cs",
+              "RelativeDocumentMoniker": "Minesweeper\\NewGameDialog.cs",
+              "ToolTip": "C:\\Users\\Draka\\Documents\\GitHub\\Minesweeper\\Minesweeper\\NewGameDialog.cs",
+              "RelativeToolTip": "Minesweeper\\NewGameDialog.cs",
+              "ViewState": "AQIAADkAAAAAAAAAAAAQwA8AAAATAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-27T10:13:57.856Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "NewGameDialog.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Draka\\Documents\\GitHub\\Minesweeper\\Minesweeper\\NewGameDialog.cs",
+              "RelativeDocumentMoniker": "Minesweeper\\NewGameDialog.cs",
+              "ToolTip": "C:\\Users\\Draka\\Documents\\GitHub\\Minesweeper\\Minesweeper\\NewGameDialog.cs [Design]",
+              "RelativeToolTip": "Minesweeper\\NewGameDialog.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-27T10:13:50.754Z",
+              "EditorCaption": " [Design]"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Form1.cs",
-              "DocumentMoniker": "C:\\Users\\Draka\\source\\repos\\Minesweeper\\Minesweeper\\Form1.cs",
+              "DocumentMoniker": "C:\\Users\\Draka\\Documents\\GitHub\\Minesweeper\\Minesweeper\\Form1.cs",
               "RelativeDocumentMoniker": "Minesweeper\\Form1.cs",
-              "ToolTip": "C:\\Users\\Draka\\source\\repos\\Minesweeper\\Minesweeper\\Form1.cs",
+              "ToolTip": "C:\\Users\\Draka\\Documents\\GitHub\\Minesweeper\\Minesweeper\\Form1.cs",
               "RelativeToolTip": "Minesweeper\\Form1.cs",
-              "ViewState": "AQIAAEIAAAAAAAAAAAAmwE0AAAAsAAAA",
+              "ViewState": "AQIAACAAAAAAAAAAAAAAADMAAAA7AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-26T16:39:52.231Z",
               "EditorCaption": ""
@@ -37,9 +70,9 @@
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "Form1.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Draka\\source\\repos\\Minesweeper\\Minesweeper\\Form1.cs",
+              "DocumentMoniker": "C:\\Users\\Draka\\Documents\\GitHub\\Minesweeper\\Minesweeper\\Form1.cs",
               "RelativeDocumentMoniker": "Minesweeper\\Form1.cs",
-              "ToolTip": "C:\\Users\\Draka\\source\\repos\\Minesweeper\\Minesweeper\\Form1.cs [Design]",
+              "ToolTip": "C:\\Users\\Draka\\Documents\\GitHub\\Minesweeper\\Minesweeper\\Form1.cs [Design]",
               "RelativeToolTip": "Minesweeper\\Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-26T16:35:32.002Z",

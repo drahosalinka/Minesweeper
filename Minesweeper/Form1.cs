@@ -14,11 +14,12 @@ namespace Minesweeper
     {
         private TableLayoutPanel gamePanel; 
         private Button[,] gameFields;
+        private int gridSize = 10; 
         public Form1()
         {
             InitializeComponent();
             InitializeMenu();
-            InitializeGamePanel();
+            InitializeGamePanel(gridSize);
         }
 
         private void InitializeMenu()
@@ -47,8 +48,15 @@ namespace Minesweeper
 
         private void NewGameMenuItem_Click(object sender, EventArgs e)
         {
-            // Új játék kezdése
-            // Implementáld ezt a metódust a saját játékod logikájával
+                NewGameDialog dialog = new NewGameDialog();
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    gridSize = dialog.SelectedSize;
+                    // Tisztító lépések: töröld az összes gombot a játékmezőről
+                    gamePanel.Controls.Clear();
+                    InitializeGamePanel(gridSize);
+                }
+
         }
 
         private void ExitMenuItem_Click(object sender, EventArgs e)
@@ -72,18 +80,18 @@ namespace Minesweeper
 
         }
 
-        private void InitializeGamePanel()
+        private void InitializeGamePanel(int gridSize)
         {
             gamePanel = new TableLayoutPanel();
             gamePanel.Dock = DockStyle.Fill;
             gamePanel.BackColor = Color.LightGray;
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < gridSize; i++)
             {
                 gamePanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 30)); // Oszlopok szélessége 30 pixel
                 gamePanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 30)); // Sorok magassága 30 pixel
             }
-            gamePanel.AutoSize = false;
+
 
             // A játékteret hozzáadni a formhoz
             Controls.Add(gamePanel);
@@ -94,9 +102,8 @@ namespace Minesweeper
 
         private void CreateGameFields()
         {
-            int gridSize = 10; // Például 10x10-es játékteret készítünk
             gameFields = new Button[gridSize, gridSize]; // Inicializáljuk a gombok tömbjét
-            gamePanel.Padding = new Padding(0, 30, 0, 0);
+            gamePanel.Padding = new Padding(5, 30, 5, 30);
 
             // Játékmezők létrehozása és elhelyezése a Panelen belül
             for (int i = 0; i < gridSize; i++)
@@ -106,9 +113,9 @@ namespace Minesweeper
                     // Játékmező létrehozása
                     Button field = new Button();
                     field.Size = new Size(30, 30);
+                    field.Margin = new Padding(0);
                     field.FlatStyle = FlatStyle.Flat; // Kicsit szebb megjelenítés
                     field.BackColor = Color.White; // Alapértelmezett szín
-                    field.Dock = DockStyle.Fill; // A gomb dockolása Fill-re
 
                     // Az aktuális cellához adás
                     gamePanel.Controls.Add(field, j, i);
