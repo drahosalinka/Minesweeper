@@ -14,7 +14,9 @@ namespace Minesweeper
     {
         private TableLayoutPanel gamePanel; 
         private Button[,] gameFields;
-        private int gridSize = 10; 
+        private int gridSize = 10;
+        private string[,] bombGrid;
+
         public Form1()
         {
             InitializeComponent();
@@ -97,6 +99,7 @@ namespace Minesweeper
             Controls.Add(gamePanel);
 
             // Játékmezők létrehozása a Panelen belül
+            InitializeBombGrid(gridSize);
             CreateGameFields();
         }
 
@@ -119,20 +122,150 @@ namespace Minesweeper
 
                     // Az aktuális cellához adás
                     gamePanel.Controls.Add(field, j, i);
+                    field.Tag = bombGrid[i, j];
 
                     // Gomb eseménykezelőjének hozzáadása
-                    field.Click += Field_Click;
+                    field.MouseDown += gameField_MouseDown;
                 }
             }
         }
 
-        private void Field_Click(object sender, EventArgs e)
+        private void InitializeBombGrid(int gridSize)
         {
-            // Az esemény kiváltója (sender) egy gomb, így el tudjuk érni annak tulajdonságait
-            Button clickedField = (Button)sender;
-            // Itt teheted meg, amit a gombra kattintva szeretnél
-            // Például:
-            clickedField.BackColor = Color.Red; // A gomb háttere piros lesz a kattintásra
+            bombGrid = new string[gridSize, gridSize];
+
+            PlaceBombsAndNumbers(gridSize * 2); // Aknák véletlenszerű elhelyezése
         }
+
+        private void PlaceBombsAndNumbers(int bombCount)
+        {
+            Random random = new Random();
+            List<Point> availablePositions = new List<Point>();
+
+            // Gyűjtsd össze az összes lehetséges pozíciót
+            for (int i = 0; i < gridSize; i++)
+            {
+                for (int j = 0; j < gridSize; j++)
+                {
+                    availablePositions.Add(new Point(i, j));
+                }
+            }
+
+            // Véletlenszerű mintavételezés a rendelkezésre álló pozíciókból
+            for (int i = 0; i < bombCount; i++)
+            {
+                // Véletlenszerűen válasszunk egy pozíciót a rendelkezésre álló pozíciók közül
+                int index = random.Next(0, availablePositions.Count);
+                Point position = availablePositions[index];
+
+                // Jelöld meg az akna pozícióját a bombGrid mátrixban
+                bombGrid[position.X, position.Y] = "X";
+
+                // Távolítsd el a kiválasztott pozíciót a rendelkezésre álló pozíciók listájából
+                availablePositions.RemoveAt(index);
+            }
+
+            // Az availablePositions lista végigmegy és minden pozícióra megvizsgálja a körülötte lévő mezőket
+            foreach (Point position in availablePositions)
+            {
+                int count = 0; // Mezők számolása
+
+                // Szomszédos mezők körülbelül 8 pozíciója
+                for (int i = position.X - 1; i <= position.X + 1; i++)
+                {
+                    for (int j = position.Y - 1; j <= position.Y + 1; j++)
+                    {
+                        // Ellenőrizzük, hogy a jelenlegi pozíció a griden belül van-e
+                        if (i >= 0 && i < gridSize && j >= 0 && j < gridSize)
+                        {
+                            // Ellenőrizd a szomszédos mezőket
+                            if (bombGrid[i, j] == "X")
+                            {
+                                count++;
+                            }
+                        }
+                    }
+                }
+
+                // Ha a count értéke nagyobb, mint 0 (vagyis van legalább egy aknás szomszéd), akkor beállítja a számozást
+                if (count > 0)
+                {
+                    bombGrid[position.X, position.Y] = count.ToString();
+                } 
+                else if(count == 0)
+                {
+                    bombGrid[position.X, position.Y] = "";
+                }
+            }
+
+        }
+
+
+
+        private void gameField_MouseDown(object sender, MouseEventArgs e)
+        {
+            Button clickedField = (Button)sender;
+
+            int x = gamePanel.GetColumn(clickedField);
+            int y = gamePanel.GetRow(clickedField);
+
+            if (e.Button == MouseButtons.Right && clickedField.BackColor == Color.White)
+            {
+                clickedField.BackColor = Color.Blue;
+            } else if(e.Button == MouseButtons.Right && clickedField.BackColor == Color.Blue) {
+                clickedField.BackColor = Color.White;
+            }
+
+            if (e.Button == MouseButtons.Left)
+            {
+                if((string)clickedField.Tag != "X")
+                {
+                    clickedField.BackColor = Color.LightGray;
+                    string content = (string)clickedField.Tag;
+                    clickedField.Text = (string)clickedField.Tag;
+                    if(string.IsNullOrEmpty((string)clickedField.Tag))
+                    {
+                        RevealEmptyFields(x, y);
+                    }
+                }else
+                {
+                    clickedField.BackColor = Color.Red;
+                }
+                
+               
+            }
+
+        }
+
+        private void RevealEmptyFields(int x, int y)
+        {
+            // Végigmegyünk a körülötte lévő 8 mezőn
+            for (int i = x - 1; i <= x + 1; i++)
+            {
+                for (int j = y - 1; j <= y + 1; j++)
+                {
+                    // Ellenőrizzük, hogy a mező a griden belül van-e
+                    if (i >= 0 && i < gridSize && j >= 0 && j < gridSize)
+                    {
+                        Button field = gamePanel.GetControlFromPosition(i, j) as Button; // Gombok keresése a gamePanel.Controls gyűjteményben
+                        field.BackColor = Color.LightGray;
+                            string content = (string)field.Tag;
+                        if(!string.IsNullOrEmpty((string)field.Tag))
+                        {
+                            field.Text = (string)field.Tag;
+                        }
+                           
+
+                            // Ha a megjelenített mező értéke üres, akkor ismét meghívjuk a függvényt rekurzívan
+                            if (string.IsNullOrEmpty(bombGrid[i, j]) && field.BackColor == Color.White)
+                                {
+                                    RevealEmptyFields(i, j);
+                                }
+                    }
+                }
+            }
+        }
+
+
     }
 }
