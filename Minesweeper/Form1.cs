@@ -15,13 +15,14 @@ namespace Minesweeper
         private TableLayoutPanel gamePanel; 
         private Button[,] gameFields;
         private int gridSize = 10;
+        private int difficulty = 2;
         private string[,] bombGrid;
 
         public Form1()
         {
             InitializeComponent();
             InitializeMenu();
-            InitializeGamePanel(gridSize);
+            InitializeGamePanel(gridSize, difficulty);
         }
 
         private void InitializeMenu()
@@ -56,7 +57,23 @@ namespace Minesweeper
                     gridSize = dialog.SelectedSize;
                     // Tisztító lépések: töröld az összes gombot a játékmezőről
                     gamePanel.Controls.Clear();
-                    InitializeGamePanel(gridSize);
+
+                    switch (dialog.SelectedDifficulty)
+                    {
+                        case "Könnyű":
+                        difficulty = 1;
+                            break;
+                        case "Normál":
+                        difficulty = 2;
+                            break;
+                        case "Nehéz":
+                        difficulty = 3;
+                            break;
+                        default:
+                            break;
+                    }
+
+                InitializeGamePanel(gridSize, difficulty);
                 }
 
         }
@@ -82,7 +99,7 @@ namespace Minesweeper
 
         }
 
-        private void InitializeGamePanel(int gridSize)
+        private void InitializeGamePanel(int gridSize, int difficulty)
         {
             gamePanel = new TableLayoutPanel();
             gamePanel.Dock = DockStyle.Fill;
@@ -134,7 +151,7 @@ namespace Minesweeper
         {
             bombGrid = new string[gridSize, gridSize];
 
-            PlaceBombsAndNumbers(gridSize * 2); // Aknák véletlenszerű elhelyezése
+            PlaceBombsAndNumbers(gridSize * difficulty); // Aknák véletlenszerű elhelyezése
         }
 
         private void PlaceBombsAndNumbers(int bombCount)
@@ -211,7 +228,7 @@ namespace Minesweeper
 
             if (e.Button == MouseButtons.Right && clickedField.BackColor == Color.White)
             {
-                clickedField.BackColor = Color.Blue;
+                clickedField.BackColor = Color.Red;
             } else if(e.Button == MouseButtons.Right && clickedField.BackColor == Color.Blue) {
                 clickedField.BackColor = Color.White;
             }
@@ -229,12 +246,32 @@ namespace Minesweeper
                     }
                 }else
                 {
-                    clickedField.BackColor = Color.Red;
+                    RevealAllFields();
+                    MessageBox.Show("Sajnos vesztettél", "Vesztes!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    gamePanel.Controls.Clear();
+                    InitializeGamePanel(gridSize, difficulty);
                 }
-                
-               
+
+
             }
 
+        }
+
+        private void RevealAllFields()
+        {
+            for (int i = 0; i < gridSize; i++)
+            {
+                for (int j = 0; j < gridSize; j++)
+                {
+                    Button field = gamePanel.GetControlFromPosition(i, j) as Button;
+                    string content = (string)field.Tag;
+                    field.Text = content;
+                    if (content == "X")
+                    {
+                        field.ForeColor = Color.Red;
+                    }
+                }
+            }
         }
 
         private void RevealEmptyFields(int x, int y)
