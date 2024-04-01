@@ -239,33 +239,38 @@ namespace Minesweeper
 
         private void RevealEmptyFields(int x, int y)
         {
-            // Végigmegyünk a körülötte lévő 8 mezőn
-            for (int i = x - 1; i <= x + 1; i++)
-            {
-                for (int j = y - 1; j <= y + 1; j++)
-                {
-                    // Ellenőrizzük, hogy a mező a griden belül van-e
-                    if (i >= 0 && i < gridSize && j >= 0 && j < gridSize)
-                    {
-                        Button field = gamePanel.GetControlFromPosition(i, j) as Button; // Gombok keresése a gamePanel.Controls gyűjteményben
-                        field.BackColor = Color.LightGray;
-                            string content = (string)field.Tag;
-                        if(!string.IsNullOrEmpty((string)field.Tag))
-                        {
-                            field.Text = (string)field.Tag;
-                        }
-                           
+            Queue<Point> queue = new Queue<Point>();
+            queue.Enqueue(new Point(x, y));
 
-                            // Ha a megjelenített mező értéke üres, akkor ismét meghívjuk a függvényt rekurzívan
-                            if (string.IsNullOrEmpty(bombGrid[i, j]) && field.BackColor == Color.White)
+            while (queue.Count > 0)
+            {
+                Point currentPoint = queue.Dequeue();
+                x = currentPoint.X;
+                y = currentPoint.Y;
+
+                for (int i = x - 1; i <= x + 1; i++)
+                {
+                    for (int j = y - 1; j <= y + 1; j++)
+                    {
+                        if (i >= 0 && i < gridSize && j >= 0 && j < gridSize)
+                        {
+                            Button field = gamePanel.GetControlFromPosition(i, j) as Button;
+
+                            if (field != null && field.BackColor != Color.LightGray)
+                            {
+                                field.BackColor = Color.LightGray;
+                                field.Text = (string)field.Tag;
+
+                                if (string.IsNullOrEmpty((string)field.Tag))
                                 {
-                                    RevealEmptyFields(i, j);
+                                    queue.Enqueue(new Point(i, j));
                                 }
+                            }
+                        }
                     }
                 }
             }
         }
-
 
     }
 }
