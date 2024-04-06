@@ -101,9 +101,11 @@ namespace Minesweeper
 
         private void InitializeGamePanel(int gridSize, int difficulty)
         {
-            gamePanel = new TableLayoutPanel();
-            gamePanel.Dock = DockStyle.Fill;
-            gamePanel.BackColor = Color.LightGray;
+            if(gamePanel == null) {
+                gamePanel = new TableLayoutPanel();
+                gamePanel.Dock = DockStyle.Fill;
+                gamePanel.BackColor = Color.LightGray;
+            }
 
             for (int i = 0; i < gridSize; i++)
             {
@@ -116,7 +118,7 @@ namespace Minesweeper
             Controls.Add(gamePanel);
 
             // Játékmezők létrehozása a Panelen belül
-            InitializeBombGrid(gridSize);
+            InitializeBombGrid(gridSize, difficulty);
             CreateGameFields();
         }
 
@@ -147,7 +149,7 @@ namespace Minesweeper
             }
         }
 
-        private void InitializeBombGrid(int gridSize)
+        private void InitializeBombGrid(int gridSize, int difficulty)
         {
             bombGrid = new string[gridSize, gridSize];
 
@@ -229,7 +231,7 @@ namespace Minesweeper
             if (e.Button == MouseButtons.Right && clickedField.BackColor == Color.White)
             {
                 clickedField.BackColor = Color.Red;
-            } else if(e.Button == MouseButtons.Right && clickedField.BackColor == Color.Blue) {
+            } else if(e.Button == MouseButtons.Right && clickedField.BackColor == Color.Red) {
                 clickedField.BackColor = Color.White;
             }
 
@@ -250,7 +252,8 @@ namespace Minesweeper
                     MessageBox.Show("Sajnos vesztettél", "Vesztes!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     gamePanel.Controls.Clear();
                     InitializeGamePanel(gridSize, difficulty);
-                }
+
+    }
 
 
             }
@@ -266,6 +269,7 @@ namespace Minesweeper
                     Button field = gamePanel.GetControlFromPosition(i, j) as Button;
                     string content = (string)field.Tag;
                     field.Text = content;
+                    field.BackColor = Color.LightGray;
                     if (content == "X")
                     {
                         field.ForeColor = Color.Red;
