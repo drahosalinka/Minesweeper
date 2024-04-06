@@ -145,6 +145,7 @@ namespace Minesweeper
 
                     // Gomb eseménykezelőjének hozzáadása
                     field.MouseDown += gameField_MouseDown;
+                    field.BackColorChanged += gameField_BackColorChanged;
                 }
             }
         }
@@ -313,5 +314,41 @@ namespace Minesweeper
             }
         }
 
+        private void gameField_BackColorChanged(object sender, EventArgs e)
+        {
+            CheckWinCondition();
+        }
+
+        private void CheckWinCondition()
+        {
+            bool allNonBombFieldsGray = true;
+
+            // Végigmegyünk az összes játékmezőn
+            foreach (Control control in gamePanel.Controls)
+            {
+                if (control is Button field)
+                {
+                    // Ellenőrizzük, hogy az adott mező akna-e
+                    if ((string)field.Tag != "X")
+                    {
+                        // Ellenőrizzük, hogy a mező háttérszíne szürke-e
+                        if (field.BackColor != Color.LightGray)
+                        {
+                            allNonBombFieldsGray = false;
+                            break; // Ha találunk egy nem szürke mezőt, kilépünk a ciklusból
+                        }
+                    }
+                }
+            }
+
+            // Ha az összes nem aknát tartalmazó mező háttere szürke, akkor a játékos nyert
+            if (allNonBombFieldsGray)
+            {
+                MessageBox.Show("Gratulálok! Nyertél!", "Győzelem!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+
     }
+
 }
