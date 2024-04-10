@@ -337,6 +337,14 @@ namespace Minesweeper
                             allNonBombFieldsGray = false;
                             break; // Ha találunk egy nem szürke mezőt, kilépünk a ciklusból
                         }
+                        else
+                    {
+                        if (field.BackColor != Color.Red)
+                        {
+                            allNonBombFieldsGray = false;
+                            break;
+                        }
+                    }
                     }
                 }
             }
